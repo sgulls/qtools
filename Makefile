@@ -1,5 +1,5 @@
-CC       = gcc
-LIBS     = -lreadline
+CC       = gcc-10
+LIBS     = -lreadline /usr/local/Cellar/readline/8.0.4/lib/libreadline.8.0.dylib /usr/local/Cellar/readline/8.0.4/lib/libhistory.8.0.dylib
 CFLAGS   = -O2 -g -Wno-unused-result -Wunused
 
 OBJS     = hdlc.o  qcio.o memio.o chipconfig.o
@@ -8,7 +8,7 @@ OBJS     = hdlc.o  qcio.o memio.o chipconfig.o
 
 all:    qcommand qrmem qrflash qdload mibibsplit qwflash qwdirect qefs qnvram qblinfo qident qterminal qbadblock qflashparm
 
-clean: 
+clean:
 	rm *.o
 	rm $(all)
 
@@ -43,13 +43,13 @@ qdload: qdload.o sahara.o $(OBJS)  ptable.o
 
 qwdirect: qwdirect.o $(OBJS)  ptable.o
 	gcc $^ -o $@ $(LIBS)
-	
+
 qefs  : qefs.o efsio.o $(OBJS)
 	gcc $^ -o $@ $(LIBS)
 
 qnvram  : qnvram.o $(OBJS)
 	gcc $^ -o $@ $(LIBS)
-	
+
 mibibsplit: mibibsplit.o $(OBJS)
 	gcc $^ -o $@ $(LIBS)
 
@@ -67,4 +67,4 @@ qbadblock:   qbadblock.o $(OBJS)  ptable.o
 
 qflashparm:  qflashparm.o $(OBJS)
 	gcc $^ -o $@ $(LIBS)
-	
+
